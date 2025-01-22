@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  servidor:
+    build:
+      context: ./servidor
+    container_name: servidor_juego
+    ports:
+      - "5000:5000"
+    networks:
+      - juego_red
+  cliente:
+    build:
+      context: ./cliente
+    container_name: cliente_juego
+    stdin_open: true
+    tty: true
+    networks:
+      - juego_red
+
+networks:
+  juego_red:
+    driver: bridge
